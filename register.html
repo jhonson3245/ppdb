@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Register PPDB SMK Merdeka Bandung</title>
+<style>
+/* ================= GLOBAL ================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+body{background:#f4f7ff;}
+a{text-decoration:none;}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    background:linear-gradient(90deg,#1f4fd8,#3b6cff);
+    color:#fff;
+    padding:14px 48px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.nav-left img{width:42px;}
+.nav-left strong{font-size:17px;letter-spacing:.5px;}
+
+/* ================= HERO / REGISTER ================= */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+
+    /* background landing page */
+    background:
+        linear-gradient(to right, rgba(15,31,74,0.85), rgba(31,79,216,0.55)),
+        url("img/bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+/* Hero container (form + gambar) */
+.hero-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    max-width:1000px;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ================= FORM ================= */
+.hero-left{
+    background: rgba(255,255,255,.95);
+    width:100%;
+    max-width:480px;
+    padding:42px;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+.hero-left h2{font-size:28px;color:#1f4fd8;margin-bottom:12px;}
+.hero-left p{font-size:15px;color:#555;margin-bottom:20px;}
+.hero-left label{display:block;margin:12px 0 6px;font-size:14px;}
+.hero-left input, .hero-left textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;}
+.hero-left textarea{resize:none;height:70px;}
+.hero-left .check{margin-top:10px;font-size:13px;display:flex;align-items:center;}
+.hero-left button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    background:#1f4fd8;
+    color:#fff;
+    border-radius:25px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+.hero-left button:hover{background:#163cb5;}
+.message{color:green;font-weight:bold;margin-bottom:10px;}
+
+/* ================= GAMBAR KANAN ================= */
+.hero-right{
+    width:45%;
+    text-align:center;
+}
+.hero-right img{
+    width:100%;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+@media(max-width:900px){
+    .hero-container{flex-direction:column;gap:30px;}
+    .hero-right{width:80%;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <img src="ChatGPT Image Feb 5, 2026, 08_17_27 AM.png" alt="Logo">
+        <strong>PPDB SMK Merdeka Bandung</strong>
+    </div>
+</header>
+
+<!-- HERO / REGISTER -->
+<section class="hero">
+    <div class="hero-container">
+
+        <!-- FORM REGISTER -->
+        <div class="hero-left">
+            <h2>Daftar Akun PPDB</h2>
+            <p>Silakan isi data di bawah ini untuk membuat akun.</p>
+            <p class="message" id="message"></p>
+
+            <form id="ppdbForm">
+                <label>Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Nama Lengkap" required>
+
+                <label>Nomor HP</label>
+                <input type="text" id="hp" placeholder="08xxxxxxxxxx" required>
+
+                <label>email</label>
+                <input type="text" id="asal" placeholder="SMP / MTs" required>
+
+                <label>Passwoard</label>
+                <textarea id="alamat" placeholder="Alamat Lengkap" required></textarea>
+
+                S
+
+                <div class="check">
+                    <input type="checkbox" id="cek" required> Saya menyatakan data benar
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- GAMBAR ILUSTRASI -->
+        <div class="hero-right">
+            <img src="ChatGPT Image Feb 10, 2026, 10_28_20 PM.png"Ilustrasi PPDB">
+        </div>
+
+    </div>
+</section>
+
+<script>
+/* ===== FORM REGISTER ===== */
+document.getElementById('ppdbForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const nama = document.getElementById('nama').value;
+    const hp = document.getElementById('hp').value;
+    const asal = document.getElementById('asal').value;
+    const alamat = document.getElementById('alamat').value;
+    const dokumen = document.getElementById('dokumen').files[0] ? document.getElementById('dokumen').files[0].name : 'Tidak ada';
+
+    const peserta = { nama, hp, asal, alamat, dokumen };
+
+    let daftar = JSON.parse(localStorage.getItem('ppdbData') || '[]');
+    daftar.push(peserta);
+    localStorage.setItem('ppdbData', JSON.stringify(daftar));
+
+    document.getElementById('ppdbForm').reset();
+    document.getElementById('message').textContent = "Pendaftaran berhasil! Mengarahkan ke login...";
+
+    // redirect ke login.html setelah 2 detik
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 2000);
+});
+</script>
+
+</body>
+</html>
