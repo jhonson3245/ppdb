@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Beranda - PPDB SMK Merdeka Bandung</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+body{background:#f4f7ff;}
+a{text-decoration:none;color:inherit;}
+
+/* NAVBAR */
+.navbar{
+    background:linear-gradient(90deg,#1f4fd8,#3b6cff);
+    color:#fff;
+    padding:14px 48px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.nav-left img{width:42px;}
+.nav-left strong{font-size:17px;letter-spacing:.5px;}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    background:
+        linear-gradient(to right, rgba(15,31,74,0.85), rgba(31,79,216,0.55)),
+        url("img/bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+.hero-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    max-width:1000px;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+}
+.hero-left{
+    width:100%;
+    max-width:480px;
+    color:#fff;
+}
+.hero-left h1{font-size:36px;margin-bottom:12px;}
+.hero-left p{font-size:18px;margin-bottom:20px;}
+.hero-right{
+    width:45%;
+    text-align:center;
+}
+.hero-right img{
+    width:100%;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+
+/* DASHBOARD MENU */
+.dashboard{
+    max-width:1000px;
+    margin:60px auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+.card{
+    background:#fff;
+    width:180px;
+    padding:20px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transition:0.3s;
+    cursor:pointer;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 35px rgba(0,0,0,.18);
+}
+.card .icon{
+    font-size:32px;
+    margin-bottom:12px;
+}
+.card h4{color:#1f4fd8;margin-bottom:6px;}
+.card p{font-size:13px;color:#555;line-height:1.4;}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:900px){
+    .hero-container{flex-direction:column;gap:30px;}
+    .hero-right{width:80%;}
+    .dashboard{flex-direction:column;align-items:center;}
+    .card{width:80%;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-left">
+        <img src="img/logo.png" alt="Logo">
+        <strong>PPDB SMK Merdeka Bandung</strong>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-left">
+            <h1>Selamat Datang di PPDB SMK Merdeka Bandung</h1>
+            <p>Tahun Ajaran 2026 / 2027</p>
+        </div>
+        <div class="hero-right">
+            <img src="img/ilustrasi.png" alt="Ilustrasi PPDB">
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD MENU -->
+<section class="dashboard">
+    <div class="card">
+       <a href="formulir.html">
+    <div class="card">
+        <div class="icon">📝</div>
+        <h4>Formulir</h4>
+        <p>Isi formulir pendaftaran peserta didik baru</p>
+    </div>
+</a>
+
+    </div>
+    <div class="card">
+        <div class="icon">📤</div>
+        <h4>Upload Berkas</h4>
+        <p>Unggah dokumen persyaratan</p>
+    </div>
+    <div class="card">
+        <div class="icon">📢</div>
+        <h4>Pengumuman</h4>
+        <p>Cek pengumuman hasil seleksi PPDB</p>
+    </div>
+    <div class="card">
+        <div class="icon">📅</div>
+        <h4>Jadwal PPDB</h4>
+        <p>Lihat jadwal pendaftaran dan seleksi</p>
+    </div>
+    <div class="card">
+        <div class="icon">📖</div>
+        <h4>Panduan PPDB</h4>
+        <p>Pelajari langkah-langkah pendaftaran</p>
+    </div>
+    <div class="card">
+        <div class="icon">❓</div>
+        <h4>Bantuan</h4>
+        <p>Tanya jawab dan info seputar PPDB</p>
+    </div>
+    <div class="card">
+        <div class="icon">☎️</div>
+        <h4>Kontak</h4>
+        <p>Hubungi pihak sekolah untuk informasi</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 SMK Merdeka Bandung
+</footer>
+<div class="hero-left">
+    <h1 id="welcomeText">Selamat Datang</h1>
+    <p>Tahun Ajaran 2026 / 2027</p>
+</div>
+
+
+<script>
+if(sessionStorage.getItem('login') !== 'true'){
+    window.location.href = "login.html";
+}
+
+const akun = JSON.parse(sessionStorage.getItem('akun'));
+document.getElementById('namaUser').textContent =
+    akun.namaDepan + " " + akun.namaBelakang;
+</script>
+
+
+</body>
+</html>

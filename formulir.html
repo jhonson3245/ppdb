@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Formulir PPDB | SMK Merdeka Bandung</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+body{background:#f4f7ff;}
+a{text-decoration:none;}
+
+/* NAVBAR */
+.navbar{
+    background:linear-gradient(90deg,#1f4fd8,#3b6cff);
+    color:#fff;
+    padding:14px 48px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.nav-left img{width:42px;}
+.nav-left strong{font-size:17px;letter-spacing:.5px;}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:40px;
+    background:
+        linear-gradient(to right, rgba(15,31,74,0.85), rgba(31,79,216,0.55)),
+        url("img/bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.form-card{
+    background:rgba(255,255,255,.95);
+    width:100%;
+    max-width:700px;
+    padding:40px;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+
+.form-card h2{
+    color:#1f4fd8;
+    margin-bottom:10px;
+}
+.form-card p{
+    color:#555;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+label{
+    display:block;
+    margin:12px 0 6px;
+    font-size:14px;
+}
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+textarea{resize:none;}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:12px;
+    border:none;
+    background:#1f4fd8;
+    color:#fff;
+    border-radius:25px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+button:hover{background:#163cb5;}
+
+.message{
+    margin-top:15px;
+    font-weight:bold;
+    color:green;
+}
+
+@media(max-width:600px){
+    .row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-left">
+        <img src="img/logo.png" alt="Logo">
+        <strong>PPDB SMK Merdeka Bandung</strong>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="form-card">
+        <h2>Formulir Pendaftaran PPDB</h2>
+        <p>Silakan lengkapi data calon peserta didik dengan benar.</p>
+
+        <form id="ppdbForm">
+
+            <label>Nama Lengkap</label>
+            <input type="text" required>
+
+            <div class="row">
+                <div>
+                    <label>NISN</label>
+                    <input type="text" required>
+                </div>
+                <div>
+                    <label>Jenis Kelamin</label>
+                    <select required>
+                        <option value="">-- Pilih --</option>
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Tempat, Tanggal Lahir</label>
+            <input type="text" placeholder="Contoh: Bandung, 12 Mei 2008" required>
+
+            <label>Alamat Lengkap</label>
+            <textarea rows="3" required></textarea>
+
+            <div class="row">
+                <div>
+                    <label>Asal Sekolah</label>
+                    <input type="text" required>
+                </div>
+                <div>
+                    <label>Jurusan Pilihan</label>
+                    <select required>
+                        <option value="">-- Pilih Jurusan --</option>
+                        <option>TBSM</option>
+                        <option>TITL</option>
+                        <option>MPL</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Nomor HP Orang Tua</label>
+            <input type="tel" required>
+
+            <button type="submit">Kirim Formulir</button>
+        </form>
+
+        <div class="message" id="msg"></div>
+    </div>
+</section>
+
+<script>
+document.getElementById('ppdbForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('msg').textContent =
+        "Formulir berhasil dikirim. Terima kasih 🙏";
+});
+</script>
+
+</body>
+</html>

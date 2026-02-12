@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login PPDB SMK Merdeka Bandung</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+body{background:#f4f7ff;}
+a{text-decoration:none;}
+.navbar{
+    background:linear-gradient(90deg,#1f4fd8,#3b6cff);
+    color:#fff;
+    padding:14px 48px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.nav-left img{width:42px;}
+.nav-left strong{font-size:17px;letter-spacing:.5px;}
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    background:
+        linear-gradient(to right, rgba(15,31,74,0.85), rgba(31,79,216,0.55)),
+        url("img/bg.jpg");
+    background-size:cover;
+    background-position:center;
+}
+.hero-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    max-width:1000px;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+}
+.hero-left{
+    background: rgba(255,255,255,.95);
+    width:100%;
+    max-width:480px;
+    padding:42px;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+.hero-left h2{font-size:28px;color:#1f4fd8;margin-bottom:12px;}
+.hero-left p{font-size:15px;color:#555;margin-bottom:20px;}
+.hero-left label{display:block;margin:12px 0 6px;font-size:14px;}
+.hero-left input{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;}
+.hero-left .check{margin-top:10px;font-size:13px;display:flex;align-items:center;}
+.hero-left button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    background:#1f4fd8;
+    color:#fff;
+    border-radius:25px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+.hero-left button:hover{background:#163cb5;}
+.message{color:red;font-weight:bold;margin-bottom:10px;}
+.hero-right{
+    width:45%;
+    text-align:center;
+}
+.hero-right img{
+    width:100%;
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+@media(max-width:900px){
+    .hero-container{flex-direction:column;gap:30px;}
+    .hero-right{width:80%;}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-left">
+        <img src="img/logo.png" alt="Logo">
+        <strong>PPDB SMK Merdeka Bandung</strong>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-container">
+
+        <div class="hero-left">
+            <h2>Login Akun PPDB</h2>
+            <p>Masukkan email dan password untuk masuk</p>
+            <p class="message" id="message"></p>
+
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+
+                <div class="check">
+                    <input type="checkbox" id="showPass"> Lihat Password
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="hero-right">
+            <img src="img/ilustrasi.png" alt="Ilustrasi PPDB">
+        </div>
+
+    </div>
+</section>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const msg = document.getElementById('message');
+
+    const akun = JSON.parse(sessionStorage.getItem('akun'));
+
+    if(!akun){
+        msg.textContent = "Belum ada akun, silakan daftar";
+        return;
+    }
+
+    if(email !== akun.email || password !== akun.password){
+        msg.textContent = "Email atau password salah";
+        return;
+    }
+
+    sessionStorage.setItem('login', 'true');
+    window.location.href = "home.html";
+});
+</script>
+
+</body>
+</html>
